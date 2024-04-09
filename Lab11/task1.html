@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    /* Стили для создания расстояния между метками и полями ввода */
+    label {
+        display: inline-block;
+        width: 10px; /* Ширина метки */
+        margin-right: 10px; /* Расстояние между меткой и полем ввода */
+    }
+
+    /* Стили для создания расстояния между полями ввода */
+    input {
+        margin-bottom: 5px; /* Расстояние между полями ввода */
+    }
+
+    /* Стили для кнопки */
+    button {
+        margin-top: 10px; /* Расстояние между кнопкой и предыдущим элементом */
+        background-color: red; /* Цвет кнопки */
+        color: white; /* Цвет текста на кнопке */
+        border: none; /* Убираем границу кнопки */
+        padding: 10px 20px; /* Внутренний отступ кнопки */
+        cursor: pointer; /* Изменяем курсор при наведении на кнопку */
+    }
+  
+  /* Стили для кнопки при наведении */
+    button:hover {
+        opacity: 0.7; /* Уменьшаем прозрачность кнопки при наведении */
+    }
+</style>
+<title>Laboratory 11, task1.</title>
+<script>
+    function checkCondition() {
+        // Получаем значения a1, b1, a2, b2 из полей ввода
+        var a1 = parseFloat(document.getElementById("a1").value);
+        var b1 = parseFloat(document.getElementById("b1").value);
+        var a2 = parseFloat(document.getElementById("a2").value);
+        var b2 = parseFloat(document.getElementById("b2").value);
+        
+        // Проверяем условие
+        var result = Math.abs(a1 * b2 - a2 * b1) >= 0.0001;
+
+        // Выводим результат
+        if (result) {
+            document.getElementById("result").innerHTML = "|a1b2 - a2b1| ≥ 0.0001: True";
+        } else {
+            document.getElementById("result").innerHTML = "|a1b2 - a2b1| ≥ 0.0001: False";
+        }
+    }
+</script>
+</head>
+<body>
+	<!-- Проверка условия --> 
+    <h2>Condition check |a1b2 - a2b1| ≥ 0.0001</h2>
+    <p>Enter values for a1, b1, a2, b2:</p>
+    <form>
+        <label for="a1">a1:</label>
+        <input type="number" id="a1" step="any" required><br>
+        
+        <label for="b1">b1:</label>
+        <input type="number" id="b1" step="any" required><br>
+        
+        <label for="a2">a2:</label>
+        <input type="number" id="a2" step="any" required><br>
+        
+        <label for="b2">b2:</label>
+        <input type="number" id="b2" step="any" required><br>
+        
+		<!-- Проверка условия --> 
+        <button type="button" onclick="checkCondition()">Check condition</button>
+    </form>
+    <div id="result"></div>
+</body>
+</html>
