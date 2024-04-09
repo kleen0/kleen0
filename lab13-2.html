@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Коты и мыши</title>
+<style>
+    body {
+        background-image: url('background.jpg');
+        background-size: cover;
+        color: black; /* Изменен цвет текста на черный */
+        font-family: "Comic Sans MS", sans-serif;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+		color: darkred;
+    }
+
+    .text-block {
+        margin-bottom: 20px;
+        font-size: 30px; /* Увеличен размер текста */
+		color: black;
+    }
+
+    .image-block {
+        display: none;
+        position: absolute; /* Изменили позиционирование на абсолютное */
+    }
+
+    .image-block img {
+        width: 100%;
+        height: auto;
+    }
+
+    .highlight {
+        color: black;
+        cursor: pointer; /* Добавлен курсор указывающий на возможность взаимодействия */
+    }
+
+    p {
+        margin: 0; /* Убираем отступы для абзацев */
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Обработчик наведения мыши на слово "КОТ"
+        $(document).on("mouseenter", ".highlight", function() {
+            // Получаем координаты текстового блока
+            var textBlockPosition = $(this).offset();
+            var textBlockWidth = $(this).outerWidth();
+            var textBlockHeight = $(this).outerHeight();
+            
+            // Позиционируем изображение на месте текстового блока
+            $(".image-block").css({
+                top: textBlockPosition.top, // Позиция изображения будет такой же, как у текстового блока
+                left: textBlockPosition.left,
+                width: textBlockWidth,
+                height: textBlockHeight
+            });
+            
+            // Скрыть текстовый блок и показать графический блок
+            $(this).hide();
+            $(".image-block").show();
+        });
+
+        // Обработчик ухода мыши с графического блока
+        $(".image-block").mouseleave(function() {
+            // Скрыть графический блок и показать текстовый блок
+            $(".image-block").hide();
+            $(".highlight").show();
+        });
+    });
+</script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Рассказ про котов и мышей</h1>
+    <div class="text-block" id="text-block">
+        <p>В дремучем лесу жил одинокий <span class="highlight">Кот</span></p>
+		<p>по имени Мурзик. Каждый день он гулял по лесу, исследуя его тайны. Однажды он встретил маленькую мышку по имени Кнопка. <span class="highlight">Кот</span></p>
+		<p>и мышка быстро подружились. Вместе они искали приключений и обнаружили старый заброшенный дом, где жила еще одна семья мышей. <span class="highlight">Кот</span></p>
+		<p>помог мышам защитить свой дом от злого сова. В благодарность мыши подарили <span class="highlight">Коту</span></p>
+		<p>коробку с лакомствами. Все в лесу узнали их историю и стали говорить, что Мурзик — самый мудрый и добрый <span class="highlight">Кот</span></p>
+		<p>во всем лесу.</p>
+    </div>
+    <div class="image-block" id="image-block">
+        <img src="img/cats.png" alt="Кот и мышь">
+    </div>
+</div>
+
+</body>
+</html>
